@@ -1,0 +1,28 @@
+{
+  "name": "netatmo-presence-onoff",
+  "version": "1.0.0",
+  "description": "Code to turn ON or OFF the monitoring state of your Netatmo Presence cameras",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olileger/netatmo-presence-onoff.git"
+  },
+  "keywords": [
+    "netatmo",
+    "presence",
+    "monitoring"
+  ],
+  "author": "Olivier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olileger/netatmo-presence-onoff/issues"
+  },
+  "homepage": "https://github.com/olileger/netatmo-presence-onoff#readme",
+  "dependencies": {
+    "axios": "^1.2.5",
+    "dotenv": "^16.0.3"
+  }
+}
