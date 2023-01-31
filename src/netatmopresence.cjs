@@ -37,9 +37,9 @@ class NetatmoPresenceController
             if (this.#accessToken == undefined)
             {
                 api.GetApiAccessToken(this.#clientid, this.#clientsecret, this.#username, this.#password)
-                .then((token) =>
+                .then((res) =>
                 {
-                    this.#accessToken = token;
+                    this.#accessToken = res.data.access_token;
                     resolve();
                 });
             }
@@ -59,8 +59,9 @@ class NetatmoPresenceController
             {
                 this.#homes = new Array();
                 api.GetHomesData(this.#accessToken)
-                .then((homes) =>
+                .then((res) =>
                 {
+                    let homes = res.data.body.homes;
                     for (let h of homes)
                     {
                         let home =
@@ -88,44 +89,60 @@ class NetatmoPresenceController
     
     #setMonitoring(state)
     {
-        this.#getAccessToken()
+        let promises = new Array();
+        for (h of this.#homes)
+        {
+            let payload =
+            {
+                home:
+                {
+                    id: h.id,
+                    modules: []
+                }
+            };
+            for (m of h.modules)
+            {
+                payload.home.modules.push({
+                    id: m.id,
+                    monitoring: state
+                });
+            }
+            promises.push(new Promise((resolve, reject) =>
+            {
+                api.SetMonitoringState(this.#accessToken, payload, state)
+                .then(resolve, reject);
+            }));
+        }
+
+        return Promise.all(promises);
+    }
+
+
+    TurnMonitoringOn()
+    {
+        return this.#getAccessToken()
         .then(() =>
         {
             return this.#buildHomes();
         })
         .then(() =>
         {
-            return new Promise((resolve, reject) =>
-            {
-                api.SetMonitoringState(this.#accessToken, this.#homes, state)
-                .then(resolve, reject);
-            });
+            return this.#setMonitoring("on");
         });
-    }
-
-
-    TurnMonitoringOn()
-    {
-        let ret = {};
-        
-        this.#setMonitoring("on").
-        then((success) =>
-        {
-            ret.status = true;
-        },
-        (error) =>
-        {
-            ret.status = false;
-            ret.error = error;
-        });
-
-        return ret;
     }
 
 
     TurnMonitoringOff()
     {
-        this.#setMonitoring("off");
+        return this.#getAccessToken()
+        .then(() =>
+        {
+            return this.#buildHomes();
+        })
+        .then(() =>
+        {
+            return this.#setMonitoring("off");
+        });
     }
 }
 
