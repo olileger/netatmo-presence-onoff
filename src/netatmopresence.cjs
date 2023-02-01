@@ -41,6 +41,10 @@ class NetatmoPresenceController
                 {
                     this.#accessToken = res.data.access_token;
                     resolve();
+                })
+                .catch((err) =>
+                {
+                    reject(err);
                 });
             }
             else
@@ -77,6 +81,10 @@ class NetatmoPresenceController
                         this.#homes.push(home);
                     }
                     resolve();
+                })
+                .catch((err) =>
+                {
+                    reject(err);
                 });
             }
             else
@@ -90,7 +98,7 @@ class NetatmoPresenceController
     #setMonitoring(state)
     {
         let promises = new Array();
-        for (h of this.#homes)
+        for (let h of this.#homes)
         {
             let payload =
             {
@@ -100,7 +108,7 @@ class NetatmoPresenceController
                     modules: []
                 }
             };
-            for (m of h.modules)
+            for (let m of h.modules)
             {
                 payload.home.modules.push({
                     id: m.id,
