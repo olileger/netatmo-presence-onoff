@@ -117,7 +117,7 @@ class NetatmoPresenceController
             }
             promises.push(new Promise((resolve, reject) =>
             {
-                api.SetMonitoringState(this.#accessToken, payload, state)
+                api.SetMonitoringState(this.#accessToken, payload)
                 .then(resolve, reject);
             }));
         }
