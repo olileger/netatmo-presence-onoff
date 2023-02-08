@@ -1,7 +1,6 @@
 /**
  * Netatmo API testing code.
  */
-const assert = require("chai").assert;
 const expect = require("chai").expect;
 const netatmoapi = require("../src/netatmoapi.cjs");
 require("dotenv").config({ path: "./test/.env" });
