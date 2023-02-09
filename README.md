@@ -4,13 +4,12 @@ Code to turn ON or OFF the monitoring state of your Netatmo Presence cameras dir
 
 # usage
 ## Prerequisite
-You need several environment variables either as system env vars or within a `.env` file loaded with a tool such as dotenv.
+You may rely on environment variables either as system env vars or within a `.env` file loaded with a tool such as dotenv to create a Netatmo Presence controller. While this is not mandatory to rely on env vars, the controller expect 4 parameters as described below:
 ```
 NETATMO_USERNAME="XXXXXXXXXX"
 NETATMO_PASSWORD="XXXXXXXXXX"
 NETATMO_CLIENT_ID="XXXXXXXXXX"
 NETATMO_CLIENT_SECRET="XXXXXXXXXX"
-...
 ```
 
 - `NETATMO_USERNAME` and `NETATMO_PASSWORD` is your credentials to access your Netatmo Security application.
@@ -92,7 +91,7 @@ let homes =
 ];
 ```
 
-Then you can build the controller by adding you homes tab as the last parameter:
+Then you can build the controller by adding your homes tab as the last parameter:
 ```
 let ctrl = new netatmo.NetatmoPresenceController(
             process.env.NETATMO_CLIENT_ID,
