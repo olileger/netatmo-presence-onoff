@@ -1,0 +1,29 @@
+/**
+ * Index testing code.
+ */
+const index = require("../index.js");
+require("dotenv").config({ path: "./test/.env" });
+
+
+describe("Name is accessible", function()
+{
+    let ctrl;
+    it("Should build an object", function()
+    {
+        ctrl = new index.NetatmoPresenceController(
+            process.env.NETATMO_CLIENT_ID,
+            process.env.NETATMO_CLIENT_SECRET,
+            process.env.NETATMO_USERNAME,
+            process.env.NETATMO_PASSWORD);
+    });
+
+    it("Should turn monitoring on", async function()
+    {
+        await ctrl.TurnMonitoringOn();
+    });
+
+    it("Should turn monitoring off", async function()
+    {
+        await ctrl.TurnMonitoringOff();
+    });
+});
