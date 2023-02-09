@@ -20,6 +20,14 @@ class NetatmoPresenceController
 
     constructor(clientid, clientsecret, username, password, homes)
     {
+        if ((clientid == "" || clientid == undefined || clientid == null) ||
+            (clientsecret == "" || clientsecret == undefined || clientsecret == null) ||
+            (username == "" || username == undefined || username == null) ||
+            (password == "" || password == undefined || password == null))
+        {
+            throw new Error("Required parameter is missing");
+        }
+
         this.#clientid = clientid;
         this.#clientsecret = clientsecret;
         this.#username = username;
