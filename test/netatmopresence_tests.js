@@ -390,6 +390,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
         finally
         {
             expect(e).undefined;
+            expect(o.GetHomes()).to.not.be.null;
         }
     });
 
@@ -412,6 +413,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
         finally
         {
             expect(e).undefined;
+            expect(o.GetHomes()).to.not.be.null;
         }
     });
 

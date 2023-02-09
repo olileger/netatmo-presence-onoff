@@ -160,6 +160,11 @@ class NetatmoPresenceController
             return this.#setMonitoring("off");
         });
     }
+
+    GetHomes()
+    {
+        return JSON.parse(JSON.stringify(this.#homes));
+    }
 }
 
 
