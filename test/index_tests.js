@@ -26,4 +26,22 @@ describe("Name is accessible", function()
     {
         await ctrl.TurnMonitoringOff();
     });
+
+    it("Should turn monitoring on", function(done)
+    {
+        ctrl.TurnMonitoringOn()
+        .then(() =>
+        {
+            done();
+        })
+    });
+
+    it("Should turn monitoring off", function(done)
+    {
+        ctrl.TurnMonitoringOff()
+        .then(() =>
+        {
+            done();
+        })
+    });
 });
