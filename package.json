@@ -1,6 +1,6 @@
 {
   "name": "netatmo-presence-onoff",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Code to turn ON or OFF the monitoring state of your Netatmo Presence cameras",
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.7",
+    "dotenv": "^16.3.1",
     "mocha": "^10.2.0"
   }
 }

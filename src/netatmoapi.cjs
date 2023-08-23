@@ -11,16 +11,14 @@ const homes_data_url = "https://api.netatmo.com/api/homesdata";
 const set_state_url = "https://api.netatmo.com/api/setstate";
 
 
-function GetApiAccessToken(cid, cst, usr, pwd)
+function GetApiAccessToken(cid, cst, rt)
 {
     const payload =
     {
-        grant_type: "password",
+        grant_type: "refresh_token",
         client_id: cid,
         client_secret: cst,
-        username: usr,
-        password: pwd,
-        scope: "read_presence write_presence"
+        refresh_token: rt
     };
     const config =
     {

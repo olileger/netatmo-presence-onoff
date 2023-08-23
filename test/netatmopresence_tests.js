@@ -35,8 +35,7 @@ describe("Object construction", function()
             o = new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 homes);
         }
         catch (err)
@@ -60,8 +59,7 @@ describe("Object construction", function()
             o = new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD);
+                process.env.NETATMO_REFRESH_TOKEN);
         }
         catch (err)
         {
@@ -82,8 +80,7 @@ describe("Object construction", function()
             new netatmopresence.NetatmoPresenceController(
                 undefined,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 homes);
         }
         catch (err)
@@ -99,8 +96,7 @@ describe("Object construction", function()
             new netatmopresence.NetatmoPresenceController(
                 null,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 homes);
         }
         catch (err)
@@ -116,8 +112,7 @@ describe("Object construction", function()
             new netatmopresence.NetatmoPresenceController(
                 "",
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 homes);
         }
         catch (err)
@@ -133,8 +128,7 @@ describe("Object construction", function()
             new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 undefined,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 homes);
         }
         catch (err)
@@ -150,8 +144,7 @@ describe("Object construction", function()
             new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 null,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 homes);
         }
         catch (err)
@@ -167,8 +160,7 @@ describe("Object construction", function()
             new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 "",
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 homes);
         }
         catch (err)
@@ -177,7 +169,7 @@ describe("Object construction", function()
         }
     });
 
-    it("Should throw an error if username is missing", function()
+    it("Should throw an error if refresh token is missing", function()
     {
         try
         {
@@ -185,7 +177,6 @@ describe("Object construction", function()
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
                 undefined,
-                process.env.NETATMO_PASSWORD,
                 homes);
         }
         catch (err)
@@ -194,65 +185,13 @@ describe("Object construction", function()
         }
     });
 
-    it("Should throw an error if username is null", function()
+    it("Should throw an error if refresh token is null", function()
     {
         try
         {
             new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                null,
-                process.env.NETATMO_PASSWORD,
-                homes);
-        }
-        catch (err)
-        {
-            checkError(err);
-        }
-    });
-
-    it("Should throw an error if username is void", function()
-    {
-        try
-        {
-            new netatmopresence.NetatmoPresenceController(
-                process.env.NETATMO_CLIENT_ID,
-                process.env.NETATMO_CLIENT_SECRET,
-                "",
-                process.env.NETATMO_PASSWORD,
-                homes);
-        }
-        catch (err)
-        {
-            checkError(err);
-        }
-    });
-
-    it("Should throw an error if password is missing", function()
-    {
-        try
-        {
-            new netatmopresence.NetatmoPresenceController(
-                process.env.NETATMO_CLIENT_ID,
-                process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                undefined,
-                homes);
-        }
-        catch (err)
-        {
-            checkError(err);
-        }
-    });
-
-    it("Should throw an error if password is null", function()
-    {
-        try
-        {
-            new netatmopresence.NetatmoPresenceController(
-                process.env.NETATMO_CLIENT_ID,
-                process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
                 null,
                 homes);
         }
@@ -262,14 +201,13 @@ describe("Object construction", function()
         }
     });
 
-    it("Should throw an error if password is void", function()
+    it("Should throw an error if refresh token is void", function()
     {
         try
         {
             new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
                 "",
                 homes);
         }
@@ -284,7 +222,6 @@ describe("Object construction", function()
         try
         {
             new netatmopresence.NetatmoPresenceController(
-                undefined,
                 undefined,
                 undefined,
                 undefined);
@@ -313,8 +250,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
             o = new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 [
                     {
                         id: process.env.NETATMO_HOME_ID,
@@ -379,8 +315,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
             await new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD)
+                process.env.NETATMO_REFRESH_TOKEN)
                 .TurnMonitoringOn();
         }
         catch (err)
@@ -402,8 +337,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
             await new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD)
+                process.env.NETATMO_REFRESH_TOKEN)
                 .TurnMonitoringOff();
         }
         catch (err)
@@ -426,8 +360,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
             await new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 h)
                 .TurnMonitoringOff();
         }
@@ -446,8 +379,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
             await new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 h)
                 .TurnMonitoringOff();
         }
@@ -466,8 +398,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
             await new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 h)
                 .TurnMonitoringOff();
         }
@@ -486,8 +417,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
             await new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 h)
                 .TurnMonitoringOff();
         }
@@ -506,8 +436,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
             await new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 h)
                 .TurnMonitoringOff();
         }
@@ -526,8 +455,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
             await new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 h)
                 .TurnMonitoringOff();
         }
@@ -546,8 +474,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
             await new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 h)
                 .TurnMonitoringOff();
         }
@@ -566,8 +493,7 @@ describe("TurnMonitoringOn, TurnMonitoringOff", function()
             await new netatmopresence.NetatmoPresenceController(
                 process.env.NETATMO_CLIENT_ID,
                 process.env.NETATMO_CLIENT_SECRET,
-                process.env.NETATMO_USERNAME,
-                process.env.NETATMO_PASSWORD,
+                process.env.NETATMO_REFRESH_TOKEN,
                 h)
                 .TurnMonitoringOff();
         }

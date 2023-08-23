@@ -30,8 +30,7 @@ describe("GetApiAccessToken", function()
     {
         let res = await netatmoapi.GetApiAccessToken(process.env.NETATMO_CLIENT_ID,
                                                      process.env.NETATMO_CLIENT_SECRET,
-                                                     process.env.NETATMO_USERNAME,
-                                                     process.env.NETATMO_PASSWORD);
+                                                     process.env.NETATMO_REFRESH_TOKEN);
         
         expect(res).not.undefined;
         expect(res.data).not.undefined;
@@ -45,8 +44,7 @@ describe("GetApiAccessToken", function()
         {
             await netatmoapi.GetApiAccessToken("",
                                                process.env.NETATMO_CLIENT_SECRET,
-                                               process.env.NETATMO_USERNAME,
-                                               process.env.NETATMO_PASSWORD);
+                                               process.env.NETATMO_REFRESH_TOKEN);
         }
         catch (err)
         {
@@ -60,8 +58,7 @@ describe("GetApiAccessToken", function()
         {
             await netatmoapi.GetApiAccessToken("ABCDEF",
                                                process.env.NETATMO_CLIENT_SECRET,
-                                               process.env.NETATMO_USERNAME,
-                                               process.env.NETATMO_PASSWORD);
+                                               process.env.NETATMO_REFRESH_TOKEN);
         }
         catch (err)
         {
@@ -75,8 +72,7 @@ describe("GetApiAccessToken", function()
         {
             await netatmoapi.GetApiAccessToken(process.env.NETATMO_CLIENT_ID,
                                                "",
-                                               process.env.NETATMO_USERNAME,
-                                               process.env.NETATMO_PASSWORD);
+                                               process.env.NETATMO_REFRESH_TOKEN);
         }
         catch (err)
         {
@@ -90,8 +86,7 @@ describe("GetApiAccessToken", function()
         {
             await netatmoapi.GetApiAccessToken(process.env.NETATMO_CLIENT_ID,
                                                "ABCDEF",
-                                               process.env.NETATMO_USERNAME,
-                                               process.env.NETATMO_PASSWORD);
+                                               process.env.NETATMO_REFRESH_TOKEN);
         }
         catch (err)
         {
@@ -99,43 +94,12 @@ describe("GetApiAccessToken", function()
         }
     });
 
-    it("Should throw an error when username is void", async function()
+    it("Should throw an error when refresh token is void", async function()
     {
         try
         {
             await netatmoapi.GetApiAccessToken(process.env.NETATMO_CLIENT_ID,
                                                process.env.NETATMO_CLIENT_SECRET,
-                                               "",
-                                               process.env.NETATMO_PASSWORD);
-        }
-        catch (err)
-        {
-            checkError(err);
-        }
-    });
-
-    it("Should throw an error when username is unknown", async function()
-    {
-        try
-        {
-            await netatmoapi.GetApiAccessToken(process.env.NETATMO_CLIENT_ID,
-                                               process.env.NETATMO_CLIENT_SECRET,
-                                               "ABCDEF",
-                                               process.env.NETATMO_PASSWORD);
-        }
-        catch (err)
-        {
-            checkError(err);
-        }
-    });
-
-    it("Should throw an error when password is void", async function()
-    {
-        try
-        {
-            await netatmoapi.GetApiAccessToken(process.env.NETATMO_CLIENT_ID,
-                                               process.env.NETATMO_CLIENT_SECRET,
-                                               process.env.NETATMO_USERNAME,
                                                "");
         }
         catch (err)
@@ -144,13 +108,12 @@ describe("GetApiAccessToken", function()
         }
     });
 
-    it("Should throw an error when password is unknown", async function()
+    it("Should throw an error when refresh token is unknown", async function()
     {
         try
         {
             await netatmoapi.GetApiAccessToken(process.env.NETATMO_CLIENT_ID,
                                                process.env.NETATMO_CLIENT_SECRET,
-                                               process.env.NETATMO_USERNAME,
                                                "ABCDEF");
         }
         catch (err)
@@ -163,7 +126,7 @@ describe("GetApiAccessToken", function()
     {
         try
         {
-            await netatmoapi.GetApiAccessToken("", "", "", "");
+            await netatmoapi.GetApiAccessToken("", "", "");
         }
         catch (err)
         {
@@ -187,7 +150,7 @@ describe("GetApiAccessToken", function()
     {
         try
         {
-            await netatmoapi.GetApiAccessToken("A", "B", "C", "D");
+            await netatmoapi.GetApiAccessToken("A", "B", "C");
         }
         catch (err)
         {
@@ -209,8 +172,7 @@ describe("GetHomesData", function()
     {
         let res = await netatmoapi.GetApiAccessToken(process.env.NETATMO_CLIENT_ID,
             process.env.NETATMO_CLIENT_SECRET,
-            process.env.NETATMO_USERNAME,
-            process.env.NETATMO_PASSWORD);
+            process.env.NETATMO_REFRESH_TOKEN);
         token = res.data.access_token;
     });
 
@@ -284,8 +246,7 @@ describe("SetMonitoringState", function()
     {
         let res = await netatmoapi.GetApiAccessToken(process.env.NETATMO_CLIENT_ID,
             process.env.NETATMO_CLIENT_SECRET,
-            process.env.NETATMO_USERNAME,
-            process.env.NETATMO_PASSWORD);
+            process.env.NETATMO_REFRESH_TOKEN);
         token = res.data.access_token;
     });
 

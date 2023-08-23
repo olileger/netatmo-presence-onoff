@@ -12,26 +12,23 @@ class NetatmoPresenceController
 {
     #clientid;
     #clientsecret;
-    #username;
-    #password;
+    #refreshToken;
     #homes;
     #accessToken;
 
 
-    constructor(clientid, clientsecret, username, password, homes)
+    constructor(clientid, clientsecret, refreshToken, homes)
     {
         if ((clientid == "" || clientid == undefined || clientid == null) ||
             (clientsecret == "" || clientsecret == undefined || clientsecret == null) ||
-            (username == "" || username == undefined || username == null) ||
-            (password == "" || password == undefined || password == null))
+            (refreshToken == "" || refreshToken == undefined || refreshToken == null))
         {
             throw new Error("Required parameter is missing");
         }
 
         this.#clientid = clientid;
         this.#clientsecret = clientsecret;
-        this.#username = username;
-        this.#password = password;
+        this.#refreshToken = refreshToken;
 
         if (homes && homes.length)
             this.#homes = Array.from(homes);
@@ -44,7 +41,7 @@ class NetatmoPresenceController
         {
             if (this.#accessToken == undefined)
             {
-                api.GetApiAccessToken(this.#clientid, this.#clientsecret, this.#username, this.#password)
+                api.GetApiAccessToken(this.#clientid, this.#clientsecret, this.#refreshToken)
                 .then((res) =>
                 {
                     this.#accessToken = res.data.access_token;

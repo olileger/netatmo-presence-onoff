@@ -13,8 +13,7 @@ describe("Name is accessible", function()
         ctrl = new index.NetatmoPresenceController(
             process.env.NETATMO_CLIENT_ID,
             process.env.NETATMO_CLIENT_SECRET,
-            process.env.NETATMO_USERNAME,
-            process.env.NETATMO_PASSWORD);
+            process.env.NETATMO_REFRESH_TOKEN);
     });
 
     it("Should turn monitoring on", async function()

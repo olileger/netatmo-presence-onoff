@@ -1,0 +1,42 @@
+### Authorize the app to access my Netatmo presence datas
+POST https://api.netatmo.com/oauth2/authorize
+?client_id=
+&redirect_uri=.
+&scope=read_presence write_presence
+&state=ABCDEF
+
+### Response should returns:
+### code
+### state (== state's request)
+
+### Request an access token and a refresh token for my app
+POST https://api.netatmo.com/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code
+&client_id=
+&client_secret=
+&code=
+&redirect_uri=.
+&scope=read_presence write_presence
+
+### Redirect to Netatmo authorization page
+
+### Response should returns:
+### access_token
+### refresh_token
+
+
+### Access Home datas
+GET https://api.netatmo.com/api/homesdata
+Authorization: Bearer 
+
+
+### Refresh the token
+POST https://api.netatmo.com/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=refresh_token
+&client_id=
+&client_secret=
+&refresh_token=
